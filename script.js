@@ -11,15 +11,18 @@ $(function() {
 //  charWords = word.split('');
 //
 //  $('#chars').text(charWords).css("visibility", "hidden");
+  
+  $('#misses').html('Misses: ' + counter + "/" + word.length);
 
   $('button').click(function() {
     var input = $(this).text();
+    $(this).css("visibility", "hidden");
     
       if(word.includes(input)) {
         console.log(input);
       }
       else{
-        counter += 1;
+        counter++;
         $('#misses').html('Misses: ' + counter + "/" + word.length);
       }
 
