@@ -8,9 +8,9 @@ $(function() {
   
   console.log(word);
   
-//  charWords = word.split('');
-//
-//  $('#chars').text(charWords).css("visibility", "hidden");
+  charWords = word.split('');
+  $('#chars').text(charWords).css("visibility", "hidden");
+  
   
   $('#misses').html('Misses: ' + counter + "/" + word.length);
 
@@ -19,7 +19,7 @@ $(function() {
     $(this).css("visibility", "hidden");
     
       if(word.includes(input)) {
-        console.log(input);
+        $('#chars').text(input).css("visibility", "visible");
       }
       else{
         counter++;
