@@ -2,35 +2,37 @@ $(function() {
   
   var words = ["ADVENTURE", "HELLO", "GOOD", "SUCK"];
   var word = words[Math.floor(Math.random() * words.length)];
-  var counter = 0;
-  var letter = '';
-  var charWords = '';
+  var loseCounter = 0;
+  var input;
+  var wordArray = [];
   
   console.log(word);
   
-  charWords = word.split('');
-  $('#chars').text(charWords).css("visibility", "hidden");
-  
-  
-  $('#misses').html('Misses: ' + counter + "/" + word.length);
+  $('#misses').html('Misses: ' + loseCounter + "/" + word.length);
 
   $('button').click(function() {
-    var input = $(this).text();
+    input = $(this).text();
     $(this).css("visibility", "hidden");
     
-      if(word.includes(input)) {
-        $('#chars').text(input).css("visibility", "visible");
-      }
-      else{
-        counter++;
-        $('#misses').html('Misses: ' + counter + "/" + word.length);
-      }
-
-    if(counter == word.length) {
+    if(word.includes(input)) {
+      console.log(input);
+    }
+    else{
+      loseCounter++;
+      $('#misses').html('Misses: ' + loseCounter + "/" + word.length);
+    }
+    
+    if(loseCounter == word.length) {
       console.log("You Lose!");
       $('button').unbind('click');
     }
     
   });
+  
+  for(var i = 0; i<word.length; i++) {
+    wordArray[i] = "__" + " ";
+  }
+  
+  $('#chars').html(wordArray);
  
 });
