@@ -6,6 +6,12 @@ $(function() {
   var input;
   var wordArray = [];
   
+  for(var i = 0; i<word.length; i++) {
+    wordArray[i] = "__" + " ";
+  }
+  
+  $('#chars').html(wordArray);
+  
   console.log(word);
   
   $('#misses').html('Misses: ' + loseCounter + "/" + word.length);
@@ -15,7 +21,12 @@ $(function() {
     $(this).css("visibility", "hidden");
     
     if(word.includes(input)) {
-      console.log(input);
+      for(var i = 0; i<word.length; i++) {
+        if(input === word[i]) {
+          wordArray[i] = input;
+        }
+        console.log("WordArray at " + i + " is: " + wordArray[i]);
+      }
     }
     else{
       loseCounter++;
@@ -27,12 +38,8 @@ $(function() {
       $('button').unbind('click');
     }
     
+    $('#chars').html(wordArray);
+    
   });
-  
-  for(var i = 0; i<word.length; i++) {
-    wordArray[i] = "__" + " ";
-  }
-  
-  $('#chars').html(wordArray);
  
 });
