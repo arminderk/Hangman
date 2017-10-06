@@ -54,7 +54,7 @@ $(function() {
     }
     if(loseCounter == 7){
       $('#right-leg').html("\\");
-      $('#winorlose').html('You Lose! Click on the Start New Game to try again');
+      $('#winorlose').html('You Lose! Click on the Start New Game button to try again');
       console.log("You Lose!");
       $('button').unbind('click');
     }
