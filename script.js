@@ -8,13 +8,13 @@ $(function() {
   
   console.log(word);
   
-  $('#misses').html('Misses: ' + loseCounter + "/" + word.length);
-  
   for(var i = 0; i<word.length; i++) {
     wordArray[i] = "__" + " ";
   }
   
   $('#chars').html(wordArray);
+  
+  $('#misses').html('Misses: ' + loseCounter + "/" + "7")
 
   $('button').click(function() {
     input = $(this).text();
@@ -54,9 +54,7 @@ $(function() {
     }
     if(loseCounter == 7){
       $('#right-leg').html("\\");
-    }
-    
-    if(loseCounter == word.length) {
+      $('#winorlose').html('You Lose! Click on the Start New Game to try again');
       console.log("You Lose!");
       $('button').unbind('click');
     }
