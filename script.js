@@ -1,8 +1,13 @@
+function refresh() {
+  window.location.reload();
+}
+
 $(function() {
   
   var words = ["ADVENTURE", "SUPERFULOUS", "AVAILABLE"];
   var word = words[Math.floor(Math.random() * words.length)];
   var loseCounter = 0;
+  var winCounter = 0;
   var input;
   var wordArray = [];
   
@@ -24,8 +29,8 @@ $(function() {
       for(var i = 0; i<word.length; i++) {
         if(input === word[i]) {
           wordArray[i] = input;
+          winCounter++;
         }
-        console.log("WordArray at " + i + " is: " + wordArray[i]);
       }
     }
     else{
@@ -59,6 +64,9 @@ $(function() {
       $('button').unbind('click');
     }
     
+    if(winCounter == word.length) {
+      $('#winorlose').html("You Win! Click on the Start New Game button to play again");
+    }
     $('#chars').html(wordArray);
     
   });
