@@ -35,7 +35,7 @@ $(function() {
     }
     else{
       loseCounter++;
-      $('#misses').html('Misses: ' + loseCounter + "/" + word.length);
+      $('#misses').html('Misses: ' + loseCounter + "/" + 7);
     }
     
     if(loseCounter == 1){
@@ -66,6 +66,7 @@ $(function() {
     
     if(winCounter == word.length) {
       $('#winorlose').html("You Win! Click on the Start New Game button to play again");
+      $('button').unbind('click');
     }
     $('#chars').html(wordArray);
     
