@@ -38,6 +38,8 @@ $(function() {
       $('#misses').html('Misses: ' + loseCounter + "/" + 7);
     }
     
+    $('#chars').html(wordArray);
+    
     if(loseCounter == 1){
       $('#rope1').html("|");
     }
@@ -60,7 +62,7 @@ $(function() {
     if(loseCounter == 7){
       $('#right-leg').html("\\");
       $('#winorlose').html('You Lose! Click on the Start New Game button to try again');
-      console.log("You Lose!");
+      $('#chars').html(word);
       $('button').unbind('click');
     }
     
@@ -68,7 +70,6 @@ $(function() {
       $('#winorlose').html("You Win! Click on the Start New Game button to play again");
       $('button').unbind('click');
     }
-    $('#chars').html(wordArray);
     
   });
  
