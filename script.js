@@ -4,14 +4,12 @@ function refresh() {
 
 $(function() {
   
-  var words = ["ADVENTURE", "SUPERFULOUS", "AVAILABLE"];
+  var words = ["ADVENTURE", "SUPERFULOUS", "AVAILABLE", "ABSOLUTE", "ACADEMIC", "ACCIDENT", "CRIMINAL", "BLACKJACK", "DANGEROUS", "MASCULINE", "SOMETHING", "IRREGULAR"];
   var word = words[Math.floor(Math.random() * words.length)];
   var loseCounter = 0;
   var winCounter = 0;
   var input;
   var wordArray = [];
-  
-  console.log(word);
   
   for(var i = 0; i<word.length; i++) {
     wordArray[i] = "__" + " ";
