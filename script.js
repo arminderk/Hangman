@@ -11,33 +11,17 @@ $(function() {
   var input;
   var wordArray = [];
   
-  for(var i = 0; i<word.length; i++) {
-    wordArray[i] = "__" + " ";
-  }
-  
-  $('#chars').html(wordArray);
-  
-  $('#misses').html('Misses: ' + loseCounter + "/" + "7")
-
-  $('button').click(function() {
-    input = $(this).text();
-    $(this).css("visibility", "hidden");
-    
-    if(word.includes(input)) {
-      for(var i = 0; i<word.length; i++) {
-        if(input === word[i]) {
-          wordArray[i] = input;
-          winCounter++;
-        }
+  /* Function to allocate wordArray based on where input is found      in the original word */
+  function allocateWordArray(input) {
+    for(var i = 0; i<word.length; i++) {
+      if(input === word[i]) {
+        wordArray[i] = input;
+        winCounter++;
       }
     }
-    else{
-      loseCounter++;
-      $('#misses').html('Misses: ' + loseCounter + "/" + 7);
-    }
-    
-    $('#chars').html(wordArray);
-    
+  }
+  
+  function displayBody(loseCounter) {
     if(loseCounter == 1){
       $('#rope1').html("|");
     }
@@ -62,12 +46,36 @@ $(function() {
       $('#winorlose').html("You Lose! The correct word was: " + word + "!" + " Click on the Start New Game button to try again");
       $('button').unbind('click');
     }
+  }
+  
+  for(var i = 0; i<word.length; i++) {
+    wordArray[i] = "__" + " ";
+  }
+  
+  $('#chars').html(wordArray);
+  
+  $('#misses').html('Misses: ' + loseCounter + "/" + "7")
+
+  $('button').click(function() {
+    input = $(this).text();
+    $(this).css("visibility", "hidden");
+    
+    if(word.includes(input)) {
+      allocateWordArray(input);
+    }
+    else{
+      loseCounter++;
+      $('#misses').html('Misses: ' + loseCounter + "/" + "7");
+    }
+    
+    $('#chars').html(wordArray);
+    
+    displayBody(loseCounter);
     
     if(winCounter == word.length) {
       $('#winorlose').html("You Win! Click on the Start New Game button to play again");
       $('button').unbind('click');
     }
-    
-  });
  
+  });
 });
