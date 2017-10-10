@@ -61,8 +61,7 @@ $(function() {
     }
     if(loseCounter == 7){
       $('#right-leg').html("\\");
-      $('#winorlose').html('You Lose! Click on the Start New Game button to try again');
-      $('#chars').html(word);
+      $('#winorlose').html("You Lose! The correct word was: " + word + "!" + " Click on the Start New Game button to try again");
       $('button').unbind('click');
     }
     
