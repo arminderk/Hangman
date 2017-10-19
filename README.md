@@ -1,1 +1,1 @@
-# 484-Project-2
+# Simple Hangman Game created using HTML, Bootstrap, and Javascript
