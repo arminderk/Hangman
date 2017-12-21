@@ -4,6 +4,12 @@ function refresh() {
 
 $(function() {
   
+  /* Create Dynamic Buttons */
+  var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  for(var i = 0; i<alphabet.length; i++) {
+    $('.buttons').append("<button type='button' class='btn btn-primary' style='margin: 2px'>" + alphabet[i] + "</button>");
+  }
+  
   var words = ["ADVENTURE", "SUPERFULOUS", "AVAILABLE", "ABSOLUTE", "ACADEMIC", "ACCIDENT", "CRIMINAL", "BLACKJACK", "DANGEROUS", "MASCULINE", "SOMETHING", "IRREGULAR"];
   var word = words[Math.floor(Math.random() * words.length)];
   var loseCounter = 0;
@@ -11,7 +17,7 @@ $(function() {
   var input;
   var wordArray = [];
   
-  /* Function to allocate wordArray based on where input is found      in the original word */
+  /* Function to allocate wordArray based on where input is found in the original word */
   function allocateWordArray(input) {
     for(var i = 0; i<word.length; i++) {
       if(input === word[i]) {
