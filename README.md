@@ -4,4 +4,7 @@ A typical hangman game in which the objective is to guess a word correctly. Once
 
 [Play Game](https://hangthisman.herokuapp.com)
 
-#### Technologies Used: HTML, Bootstrap, JavaScript/JQuery
+### Technologies Used: 
+* HTML 
+* Bootstrap
+* JavaScript/JQuery
