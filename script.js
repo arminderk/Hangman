@@ -7,7 +7,7 @@ $(function() {
   /* Create Dynamic Buttons */
   var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   for(var i = 0; i<alphabet.length; i++) {
-    $('.buttons').append("<button type='button' class='btn btn-primary' style='margin: 2px'>" + alphabet[i] + "</button>");
+    $('.buttons').append("<button type='button' id='" + alphabet[i] + "' class='btn btn-primary' style='margin: 2px'>" + alphabet[i] + "</button>");
   }
   
   var words = ["ADVENTURE", "SUPERFULOUS", "AVAILABLE", "ABSOLUTE", "ACADEMIC", "ACCIDENT", "CRIMINAL", "BLACKJACK", "DANGEROUS", "MASCULINE", "SOMETHING", "IRREGULAR"];
@@ -17,6 +17,57 @@ $(function() {
   var input;
   var wordArray = [];
   
+  for(var i = 0; i<word.length; i++) {
+    wordArray[i] = "__" + " ";
+  }
+  
+  $('#chars').html(wordArray);
+  
+  $('#misses').html('Misses: ' + loseCounter + "/" + "7")
+
+  /**** Key Press Event ****/
+  $(document).on('keypress', function(e) {
+    var keyCode = 0;
+    if(window.event) {
+      keyCode = e.keyCode;
+    }
+    else if(e.which) {
+      keyCode = e.which;
+    }
+    var charCode = String.fromCharCode(keyCode).toUpperCase();
+    if(charCode >= 'A' && charCode <= 'Z') {
+      $('#' + charCode).click();
+    }
+  });
+  
+  /**** Button Click Event ****/
+  $('button').click(function() {
+    let game = runGame.bind(this);
+    game();
+  });
+
+  function runGame() {
+    input = $(this).text();
+    $(this).css("visibility", "hidden");
+    
+    if(word.includes(input)) {
+      allocateWordArray(input);
+    }
+    else{
+      loseCounter++;
+      $('#misses').html('Misses: ' + loseCounter + "/" + "7");
+    }
+    
+    $('#chars').html(wordArray);
+    
+    displayBody(loseCounter);
+    
+    if(winCounter == word.length) {
+      $('#winorlose').html("You Win! Click on the Start New Game button to play again");
+      $('button').unbind('click');
+    }
+  }
+
   /* Function to allocate wordArray based on where input is found in the original word */
   function allocateWordArray(input) {
     for(var i = 0; i<word.length; i++) {
@@ -53,35 +104,5 @@ $(function() {
       $('button').unbind('click');
     }
   }
-  
-  for(var i = 0; i<word.length; i++) {
-    wordArray[i] = "__" + " ";
-  }
-  
-  $('#chars').html(wordArray);
-  
-  $('#misses').html('Misses: ' + loseCounter + "/" + "7")
 
-  $('button').click(function() {
-    input = $(this).text();
-    $(this).css("visibility", "hidden");
-    
-    if(word.includes(input)) {
-      allocateWordArray(input);
-    }
-    else{
-      loseCounter++;
-      $('#misses').html('Misses: ' + loseCounter + "/" + "7");
-    }
-    
-    $('#chars').html(wordArray);
-    
-    displayBody(loseCounter);
-    
-    if(winCounter == word.length) {
-      $('#winorlose').html("You Win! Click on the Start New Game button to play again");
-      $('button').unbind('click');
-    }
- 
-  });
 });
